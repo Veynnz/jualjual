@@ -16,7 +16,7 @@ Implementasi Checklist:
 
 4. Membuat model pada aplikasi main dengan nama Product dan memiliki beberapa atribut wajib:
 
-Pada models.py di direktori main, membuat class dengan nama Product dengan argumen models.Model. Class ini berisi variabel yang diinisiasi berdasarkan datatypenya masing-masing, yaitu name(CharField), seller(CharField), price(IntegerField), description(TextField).
+    Pada models.py di direktori main, membuat class dengan nama Product dengan argumen models.Model. Class ini berisi variabel yang diinisiasi berdasarkan datatypenya masing-masing, yaitu name(CharField), seller(CharField), price(IntegerField), description(TextField).
 
 5. Membuat sebuah fungsi pada views.py untuk dikembalikan ke dalam sebuah template HTML:
 
