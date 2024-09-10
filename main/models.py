@@ -6,3 +6,7 @@ class Product(models.Model):
     seller = models.CharField(max_length=255)
     price = models.IntegerField()
     description = models.TextField()
+    
+    @property
+    def is_expensive(self):
+        return self.price > 1000000
