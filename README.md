@@ -2,19 +2,24 @@ http://dionysius-davis-jualjual.pbp.cs.ui.ac.id/
 
 Implementasi Checklist:
 1. Membuat sebuah proyek Django baru:
+
     Membuat folder baru dengan file yang dibutuhkan seperti .gitignore, requirements.txt berisi library yang dibutuhkan, folder venv bernama env yang dibuat dengan command "python -m venv env", serta folder .git yang dibuat dengan command "git init" untuk keperluan git/github.
     Menjalankan command "django-admin startproject tugas1 ." pada folder baru tersebut untuk membuat proyek Django dengan nama tugas1 pada folder tersebut
 
 2. Membuat aplikasi dengan nama main pada proyek tersebut:
+
     Menjalankan command "python manage.py startapp main" pada folder proyek utama untuk membuat direktori disebut main dengan struktur awal aplikasi Django. Command ini menggunakan file python manage.py pada folder untuk membuat direktori tersebut secara otomatis.
 
 3. Melakukan routing pada proyek agar dapat menjalankan aplikasi main:
+
     Menambahkan string baru 'main' pada list yang disebut INSTALLED_APPS yang berada pada file python settings.py di direktori proyek django.
 
 4. Membuat model pada aplikasi main dengan nama Product dan memiliki beberapa atribut wajib:
+
 Pada models.py di direktori main, membuat class dengan nama Product dengan argumen models.Model. Class ini berisi variabel yang diinisiasi berdasarkan datatypenya masing-masing, yaitu name(CharField), seller(CharField), price(IntegerField), description(TextField).
 
 5. Membuat sebuah fungsi pada views.py untuk dikembalikan ke dalam sebuah template HTML:
+
     Membuat fungsi disebut show_main dengan argumen request. Fungsi ini memiliki dictionary bernama context berisi key-value pair yang akan ditampilkan melalui template HTML. Key-value pair tersebut adalah:
         'app': 'JualJual',
         'npm': '2306213836',
@@ -22,17 +27,20 @@ Pada models.py di direktori main, membuat class dengan nama Product dengan argum
         'class': 'PBP C'
     Fungsi ini kemudian akan mereturn render(request, "main.html", context), yang berfungsi untuk me-render tampilan template dengan fungsi render yang diimport dari django.shortcuts
 
-6. Membuat file baru urls.py pada direktori main, yang berisi 2 variabel, yaitu app_name dan urlpatterns.
-app_name berfungsi untuk memberikan nama unik pada pola URL dalam aplikasi
-url_patterns berisi pola URL yang didefinisikan oleh fungsi path (dari django.urls), yang kemudian menggunakan fungsi show_main dari views.py sebagai tampilan ketika URL tersebut diakses.
+6. Membuat routing pada urls.py:
 
+    Membuat file baru urls.py pada direktori main, yang berisi 2 variabel, yaitu app_name dan urlpatterns.
+    app_name berfungsi untuk memberikan nama unik pada pola URL dalam aplikasi
+    url_patterns berisi pola URL yang didefinisikan oleh fungsi path (dari django.urls), yang kemudian menggunakan fungsi show_main dari views.py sebagai tampilan ketika URL tersebut diakses.
     Kemudian melakukan routing pada tingkat proyek dengan menambahkan url baru pada urlpatterns, yang dibuat juga dengan fungsi path (dari django.urls) dengan argumen ('', include('main.urls')). include berfungsi untuk mengimpor url dari main.urls yang tadi dibuat, dan path dikosongkan ('') agar halaman aplikasi dapat diakses secara langsung
 
 7. Melakukan deployment pada PWS:
+
     Membuat proyek baru pada website PWS dengan nama yang saya pilih, kemudian menambahkan variabel baru pada ALLOWED_HOSTS pada settings.py (url dari website tersebut yaitu"dionysius-davis-jualjual.pbp.cs.ui.ac.id").
     Kemudian menambahkan remote proyek pws tersebut pada proyek local. Lalu mengubah branch menjadi master dengan git branch -M master, dan melakukan push dengan git push pws master.
 
 8. Membuat README.md yang berisi tautan dan jawaban dari pertanyaan:
+
     Membuat file README.md pada direktori utama, dan mengisinya melalui IDE vscode. 
 
 Bagan request client ke aplikasi:
