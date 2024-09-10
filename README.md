@@ -26,7 +26,7 @@ Pada models.py di direktori main, membuat class dengan nama Product dengan argum
 app_name berfungsi untuk memberikan nama unik pada pola URL dalam aplikasi
 url_patterns berisi pola URL yang didefinisikan oleh fungsi path (dari django.urls), yang kemudian menggunakan fungsi show_main dari views.py sebagai tampilan ketika URL tersebut diakses.
 
-    Kemudian melakukan routing pada tingkat proyek dengan menambahkan url baru pada urlpatterns, yang dibuat juga dengan fungsi path (dari django.urls) dengan argumen ('', include('main.urls')). include berfungsi untuk mengimpor url dari main.urls yang tadi dibuat, dan path dikosongkan ('') agar halaman aplikasi dapat diakses secara langsung
+Kemudian melakukan routing pada tingkat proyek dengan menambahkan url baru pada urlpatterns, yang dibuat juga dengan fungsi path (dari django.urls) dengan argumen ('', include('main.urls')). include berfungsi untuk mengimpor url dari main.urls yang tadi dibuat, dan path dikosongkan ('') agar halaman aplikasi dapat diakses secara langsung
 
 7. Melakukan deployment pada PWS:
     Membuat proyek baru pada website PWS dengan nama yang saya pilih, kemudian menambahkan variabel baru pada ALLOWED_HOSTS pada settings.py (url dari website tersebut yaitu"dionysius-davis-jualjual.pbp.cs.ui.ac.id").
@@ -68,6 +68,5 @@ Alasan penggunaan framework Django:
     Django menggunakan pola arsitektur Model-View-Template (MVT) yang memisahkan logika bisnis, data, dan tampilan dengan jelas. Struktur ini cukup terorganisir sehingga membantu pemula untuk memahami dengan lebih baik
 
 Alasan model Django disebut sebagai ORM:
-
-    Melalui Django, database dapat dikelola (CRUD) hanya menggunakan python sederhana, tanpa perlu query SQL secara langsung.
-    Pada Django, model memetakan tabel dalam database dan memungkinkan pengelolaan relasi antar tabel.
+    - Melalui Django, database dapat dikelola (CRUD) hanya menggunakan python sederhana, tanpa perlu query SQL secara langsung.
+    - Pada Django, model memetakan tabel dalam database dan memungkinkan pengelolaan relasi antar tabel.
