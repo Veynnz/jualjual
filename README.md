@@ -44,17 +44,7 @@ Implementasi Checklist:
     Membuat file README.md pada direktori utama, dan mengisinya melalui IDE vscode. 
 
 Bagan request client ke aplikasi:
-    +-------------+             +------------+           +------------+           +------------+          +-------------+
-    |  Client     | ----------> |  urls.py   | --------> |  views.py  | --------> | models.py  |  ------> |  HTML       |
-    | (Request)   |  Request    | (Routing)  | Mapping   | (Logic)    | Query     | (Database) |  Fetch   | (Rendering) |
-    +-------------+             +------------+           +------------+           +------------+          +-------------+
-                                                                                                              |       
-                                                                                                    Response  |          
-                                                                                                              v          
-                                                                                                          +-------------+
-                                                                                                          |  Client     |
-                                                                                                          | (Response)  |
-                                                                                                          +-------------+
+![Bagan request client](bagan.png)
 
     1. Client mengirim request HTTP melalui browser ke URL yang diinginkan.
     2. URL dicek polanya oleh urls.py, jika cocok maka requeast diteruskan ke views.py.
