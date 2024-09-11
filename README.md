@@ -21,7 +21,6 @@ Implementasi Checklist:
 5. Membuat sebuah fungsi pada views.py untuk dikembalikan ke dalam sebuah template HTML:
 
     Membuat fungsi disebut show_main dengan argumen request. Fungsi ini memiliki dictionary bernama context berisi key-value pair yang akan ditampilkan melalui template HTML. Key-value pair tersebut adalah:
-        'app': 'JualJual',
         'npm': '2306213836',
         'name': 'Dionysius Davis',
         'class': 'PBP C'
