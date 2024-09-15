@@ -6,13 +6,13 @@ from django.core import serializers
 
 # Create your views here.
 def show_main(request):
-    product = Product.objects.all()
+    products = Product.objects.all()
     
     context = {
         'npm': '2306213836',
         'name': 'Dionysius Davis',
         'class': 'PBP C',
-        'product': product
+        'product': products
     }
 
     return render(request, "main.html", context)
