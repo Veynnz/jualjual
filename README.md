@@ -107,7 +107,7 @@ http://dionysius-davis-jualjual.pbp.cs.ui.ac.id/
 
     Pertama, membuat file forms.py pada direktori main. Class ProductForm diberi parameter ModelForm untuk mendefinisikannya sebagai form. Class ini memiliki model Product (dari models.py) dengan field yang berisi atribut dari product tersebut. Berikut kode langsung dari forms.py:
 
-    '''bash
+    ```bash
     from django.forms import ModelForm
     from main.models import Product
 
@@ -115,7 +115,7 @@ http://dionysius-davis-jualjual.pbp.cs.ui.ac.id/
         class Meta:
             model = Product
             fields = ["name", "seller", "description", "price"]
-    '''
+    ```
 
     Kemudian, terdapat beberapa perubahan yang harus dilakukan pada views.py. 
         - Mengimport redirect dari django.shortcuts
@@ -123,7 +123,7 @@ http://dionysius-davis-jualjual.pbp.cs.ui.ac.id/
         - Menambahkan fungsi create_mood_entry yang berfungsi untuk menambahkan objek Product secara otomatis ketika data disubmit dari form. Fungsi ini juga menghandle validasi input dari form tersebut.
     Berikut adalah kode yang ditambahkan pada views.py:
 
-    '''bash
+    ```bash
     from django.shortcuts import render, redirect
     ...
 
@@ -146,23 +146,25 @@ http://dionysius-davis-jualjual.pbp.cs.ui.ac.id/
     context = {'form': form}
     return render(request, "create_product.html", context)
 
+    ```
+
     - Tambahkan 4 fungsi views baru untuk melihat objek yang sudah ditambahkan dalam format XML, JSON, XML by ID, dan JSON by ID.
 
     Karena ingin show by id, maka perlu ditambahkan variabel id pada class Product di file models.py, agar tiap objek memiliki id yang unik untuk mencegah celah keamanan pada id. Id tersebut dibuat secara unik menggunakan uuid. Berikut kode yang ditambahkan pada file models.py:
 
-    '''bash
+    ```bash
     ...
     import uuid
     
     class ...
         id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
         ...
-    '''
+    ```
 
     Pertama, mengimport HttpResponse dan serializers dari django.http dan django.core. Kemudian menambahkan 4 fungsi tersebut, yaitu show_xml, show_json, show_xml_by_id, dan show_json_by_id. Masing-masing fungsi menerima parameter request, memiliki variabel data yang menyimpan seluruh objek product, serta me-return HttpResponse yang berisi 2 parameter, yaitu data hasil query yang diserialisasi menjadi json/xml dan content_type="application/...". (... adalah "xml"/"json", mengikuti jenis fungsi yang dibuat).
     Untuk fungsi yang show by id, maka fungsi memiliki parameter tambahan id, dan data yang disimpan pun difilter terlebih dahulu menggunakan id. Untuk lebih jelas, maka berikut adalah kode yang ditambahkan pada views.py:
 
-    '''bash
+    ```bash
     ...
     from django.http import HttpResponse
     from django.core import serializers
@@ -184,13 +186,13 @@ http://dionysius-davis-jualjual.pbp.cs.ui.ac.id/
         data = Product.objects.filter(pk=id)
         return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
-    '''
+    ```
 
     - Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2. 
 
     Mengimport kelima function baru dari views.py ke urls.py, dan menambahkan setiap path URL untuk setiap metode pengaksesan data pada urlpatterns. Berikut adalah kode yang perlu ditambahkan pada urls.py:
 
-    '''bash
+    ```bash
     ...
     urlpatterns = [
     ...
@@ -199,4 +201,4 @@ http://dionysius-davis-jualjual.pbp.cs.ui.ac.id/
     path('xml/<str:id>/', show_xml_by_id, name='show_xml_by_id'),
     path('json/<str:id>/', show_json_by_id, name='show_json_by_id'),
     ]
-    '''
+    ```
