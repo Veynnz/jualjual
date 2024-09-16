@@ -12,7 +12,7 @@ def show_main(request):
         'npm': '2306213836',
         'name': 'Dionysius Davis',
         'class': 'PBP C',
-        'product': products
+        'products': products
     }
 
     return render(request, "main.html", context)
