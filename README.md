@@ -207,10 +207,10 @@ http://dionysius-davis-jualjual.pbp.cs.ui.ac.id/
     ## POSTMAN Screenshot
 
     1. XML
-        ![Screenshot 2024-09-16 185458](https://github.com/user-attachments/assets/5252e298-24d4-453b-8edb-3d4125c3f8d7)
-    2. XML by ID
         ![Screenshot 2024-09-16 185355](https://github.com/user-attachments/assets/dadf51c6-f2ea-4388-8e09-ff95d646e69b)
-    3. JSON
+    2. XML by ID
         ![Screenshot 2024-09-16 185423](https://github.com/user-attachments/assets/bd8b2bdc-7622-4e9e-9ad9-3cc874371da9)
-    4. JSON by ID
+    3. JSON
         ![Screenshot 2024-09-16 185442](https://github.com/user-attachments/assets/15887604-005e-4975-b45a-e7b9c62e254a)
+    4. JSON by ID
+        ![Screenshot 2024-09-16 185458](https://github.com/user-attachments/assets/5252e298-24d4-453b-8edb-3d4125c3f8d7)
