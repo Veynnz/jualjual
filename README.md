@@ -46,7 +46,8 @@ http://dionysius-davis-jualjual.pbp.cs.ui.ac.id/
         Membuat file README.md pada direktori utama, dan mengisinya melalui IDE vscode. 
 
 2. Bagan request client ke aplikasi:
-![Bagan request client](bagan.png)
+    ![Screenshot 2024-09-11 111353](https://github.com/user-attachments/assets/47b7eb8f-ca7d-4cd9-b0ce-4310035e8984)
+
 
     1. Client mengirim request HTTP melalui browser ke URL yang diinginkan.
     2. URL dicek polanya oleh urls.py, jika cocok maka requeast diteruskan ke views.py.
@@ -202,3 +203,14 @@ http://dionysius-davis-jualjual.pbp.cs.ui.ac.id/
         path('json/<str:id>/', show_json_by_id, name='show_json_by_id'),
     ]
     ```
+
+    ## POSTMAN Screenshot
+
+    1. XML
+        ![Screenshot 2024-09-16 185458](https://github.com/user-attachments/assets/5252e298-24d4-453b-8edb-3d4125c3f8d7)
+    2. XML by ID
+        ![Screenshot 2024-09-16 185355](https://github.com/user-attachments/assets/dadf51c6-f2ea-4388-8e09-ff95d646e69b)
+    3. JSON
+        ![Screenshot 2024-09-16 185423](https://github.com/user-attachments/assets/bd8b2bdc-7622-4e9e-9ad9-3cc874371da9)
+    4. JSON by ID
+        ![Screenshot 2024-09-16 185442](https://github.com/user-attachments/assets/15887604-005e-4975-b45a-e7b9c62e254a)
