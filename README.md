@@ -103,7 +103,7 @@ http://dionysius-davis-jualjual.pbp.cs.ui.ac.id/
 
 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 
-    - # Membuat input form untuk menambahkan objek model pada app sebelumnya.
+    - ### Membuat input form untuk menambahkan objek model pada app sebelumnya.
 
     Pertama, membuat file forms.py pada direktori main. Class ProductForm diberi parameter ModelForm untuk mendefinisikannya sebagai form. Class ini memiliki model Product (dari models.py) dengan field yang berisi atribut dari product tersebut. Berikut kode langsung dari forms.py:
 
@@ -148,7 +148,7 @@ http://dionysius-davis-jualjual.pbp.cs.ui.ac.id/
     ```
 
 
-    - # Tambahkan 4 fungsi views baru untuk melihat objek yang sudah ditambahkan dalam format XML, JSON, XML by ID, dan JSON by ID.
+    - ### Tambahkan 4 fungsi views baru untuk melihat objek yang sudah ditambahkan dalam format XML, JSON, XML by ID, dan JSON by ID.
 
     Karena ingin show by id, maka perlu ditambahkan variabel id pada class Product di file models.py, agar tiap objek memiliki id yang unik untuk mencegah celah keamanan pada id. Id tersebut dibuat secara unik menggunakan uuid. Berikut kode yang ditambahkan pada file models.py:
 
@@ -188,7 +188,7 @@ http://dionysius-davis-jualjual.pbp.cs.ui.ac.id/
 
     ```
 
-    - # Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2. 
+    - ### Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2. 
 
     Mengimport kelima function baru dari views.py ke urls.py, dan menambahkan setiap path URL untuk setiap metode pengaksesan data pada urlpatterns. Berikut adalah kode yang perlu ditambahkan pada urls.py:
 
