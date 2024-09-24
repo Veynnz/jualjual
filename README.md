@@ -217,74 +217,75 @@ http://dionysius-davis-jualjual.pbp.cs.ui.ac.id/
 
 # TUGAS 4
 
-## 1. Apa perbedaan antara HttpResponseRedirect() dan redirect()
+### 1. Apa perbedaan antara HttpResponseRedirect() dan redirect()
 
-    HttpResponsedirect() harus menerima URL lengkap, atau menggunakan reverse untuk mencari URL tersebut. Sedangkan redirect() dapat menerima nama view atau objek model yang kemudian digunakan mencari URL yang sesuai. Selain itu redirect() juga memungkinkan penerimaan argumen seperti **args** dan **kwargs**. 
+    HttpResponseRedirect() harus menerima URL lengkap, atau menggunakan reverse untuk mencari URL tersebut. Sedangkan redirect() dapat menerima nama view atau objek model yang kemudian digunakan mencari URL yang sesuai. Selain itu redirect() juga memungkinkan penerimaan argumen seperti **args** dan **kwargs**.
 
-    Dapat dikatakan bahwa redirect() adalah versi *shortcut* dari HttpResponsedirect().
-
-## 2. Jelaskan cara kerja penghubungan model Product dengan User!
-
-    - Menambahkan atribut user pada model Product yang berisi models.ForeignKey(User, on_delete=models.CASCADE). Foreign key ini bertujuan sebagai referensi antara product dengan user yang sedang logged in, sehingga product tersebut hanya menjadi milik user tersebut. Product tersebut pun hanya akan ditampilkan jika user yang sedang logged in adalah user yang direferensikan melalui foreign key tersebut.
-
-## 3. Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
-
-    - *Authentication*:
-        Authentication adalah proses verifikasi pengguna yang mencoba untuk log in
-    - *Authorization*:
-        Authorization dilakukan setelah user telah diautentikasi, untuk menentukan hak/akses yang akan dimiliki oleh pengguna.
-
-    Django mengimplementasikan *authentication* pada django.contrib.auth, melalui proses seperti *login*, *logout*, dan *register*. Sedangkan authorization diimplementasikan melalui *permissions* dan *groups*.
-
-## 4. Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
-
-    - Melalui *session*:
-        - Django membuat *session* baru unik setiap pengguna baru log in.
-        - *Session* ini menjadi pengingat bagi aplikasi untuk selalu memverifikasi pengguna tersebut di setiap *request* mereka.
-
-    - *Cookies*:
-        - *Cookies* berfungsi untuk menyimpan informasi penting seperti **session key**, **settings/preferensi user**, dan informasi dari pengguna lainnya.
-        - Tidak semua *cookies* aman digunakan, karena ada yang tidak terenkripsi sehingga rentan terhadap serangan. Ada juga *cookies* yang menyimpan informasi sensitif seperti password dan lain-lain.
-
-## 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
-
-### - Mengimplementasikan fungsi registrasi, login, dan logout untuk memungkinkan pengguna untuk mengakses aplikasi sebelumnya dengan lancar.
-
-###     a. registrasi:
-            - Membuat fungsi register menggunakan **UserCreationForm()** yang diimport dari **django.contrib.auth.forms** pada **views.py** di **main**.
-            ![Screenshot 2024-09-24 204036](https://github.com/user-attachments/assets/1c8fb30e-b5de-4fe7-9ea0-edcf9cb208d0)
-
-            - Membuat file baru **register.html** pada direktori **templates** sebagai halaman register yang berisi form ini:
-            ![Screenshot 2024-09-24 204309](https://github.com/user-attachments/assets/0d6eef6a-697e-47f8-9c4d-37298c375994)
-
-            Menambahkan juga url dari **register.html** pada **urls.py** di **main**
-
-###     b. login:
-            - Membuat fungsi login dengan mengimplementasikan **AuthenticationForm** yang diimport dari **django.contrib.auth.forms** dan method **authenticate** serta **login** dari **django.contrib.auth** pada **views.py** di **main**.
-            ![Screenshot 2024-09-24 204659](https://github.com/user-attachments/assets/6f0037a6-df16-4002-bbc1-3b09f672f391)
-            - Membuat file baru **login.html** pada direktori **templates** sebagai halaman login yang berisi form ini:
-            ![Screenshot 2024-09-24 204852](https://github.com/user-attachments/assets/c1bf81a1-1865-4100-a298-b6cd5ad68384)
-
-            Menambahkan juga url dari **login.html** pada **urls.py** di **main**, serta menambahkan restriksi akses untuk pengguna yang belum login dengan menambahkan **@login_required(login_url='/login')** di atas fungsi **show_main()** **views.py**.
+    Dapat dikatakan bahwa redirect() adalah versi *shortcut* dari HttpResponseRedirect().
 
 
-###     c. logout:
-            - Membuat fungsi logout dengan menggunakan **logout** yang diimport dari django.contrib.auth, kemudian di redirect ke halaman login. Fungsi ini dibuat pada views.py di main.
-            ![Screenshot 2024-09-24 205214](https://github.com/user-attachments/assets/6af39c6c-6294-4c5a-9596-056120491357)
+### 2. Jelaskan cara kerja penghubungan model Product dengan User!
 
-### - Membuat dua akun pengguna dengan masing-masing tiga *dummy* data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.
+    Menambahkan atribut user pada model Product yang berisi models.ForeignKey(User, on_delete=models.CASCADE). Foreign key ini bertujuan sebagai referensi antara product dengan user yang sedang logged in, sehingga product tersebut hanya menjadi milik user tersebut. Product tersebut pun hanya akan ditampilkan jika user yang sedang logged in adalah user yang direferensikan melalui foreign key tersebut.
 
-        - Memanfaatkan halaman yang sudah dibuat pada step sebelumnya untuk registrasi 2 user, dan login menggunakan user-user tersebut.
-        - Kemudian mendaftarkan 3 *product* untuk masing-masing user menggunakan form yang sudah dibuat pada tugas sebelumnya.
+### 3. Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
 
-### - Menghubungkan model Product dengan User.
+- *Authentication*:
+    Authentication adalah proses verifikasi pengguna yang mencoba untuk log in
+- *Authorization*:
+    Authorization dilakukan setelah user telah diautentikasi, untuk menentukan hak/akses yang akan dimiliki oleh pengguna.
+
+Django mengimplementasikan *authentication* pada django.contrib.auth, melalui proses seperti *login*, *logout*, dan *register*. Sedangkan authorization diimplementasikan melalui *permissions* dan *groups*.
+
+### 4. Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
+
+- Melalui *session*:
+    Django membuat *session* baru unik setiap pengguna baru log in.
+    *Session* ini menjadi pengingat bagi aplikasi untuk selalu memverifikasi pengguna tersebut di setiap *request* mereka.
+
+- *Cookies*:
+    *Cookies* berfungsi untuk menyimpan informasi penting seperti **session key**, **settings/preferensi user**, dan informasi dari pengguna lainnya.
+    - Tidak semua *cookies* aman digunakan, karena ada yang tidak terenkripsi sehingga rentan terhadap serangan. Ada juga *cookies* yang menyimpan informasi sensitif seperti password dan lain-lain.
+
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+#### - Mengimplementasikan fungsi registrasi, login, dan logout untuk memungkinkan pengguna untuk mengakses aplikasi sebelumnya dengan lancar.
+
+####     a. registrasi:
+- Membuat fungsi register menggunakan **UserCreationForm()** yang diimport dari **django.contrib.auth.forms** pada **views.py** di **main**.
+![Screenshot 2024-09-24 204036](https://github.com/user-attachments/assets/1c8fb30e-b5de-4fe7-9ea0-edcf9cb208d0)
+
+- Membuat file baru **register.html** pada direktori **templates** sebagai halaman register yang berisi form ini:
+![Screenshot 2024-09-24 204309](https://github.com/user-attachments/assets/0d6eef6a-697e-47f8-9c4d-37298c375994)
+
+Menambahkan juga url dari **register.html** pada **urls.py** di **main**
+
+####     b. login:
+- Membuat fungsi login dengan mengimplementasikan **AuthenticationForm** yang diimport dari **django.contrib.auth.forms** dan method **authenticate** serta **login** dari **django.contrib.auth** pada **views.py** di **main**.
+![Screenshot 2024-09-24 204659](https://github.com/user-attachments/assets/6f0037a6-df16-4002-bbc1-3b09f672f391)
+- Membuat file baru **login.html** pada direktori **templates** sebagai halaman login yang berisi form ini:
+![Screenshot 2024-09-24 204852](https://github.com/user-attachments/assets/c1bf81a1-1865-4100-a298-b6cd5ad68384)
+
+Menambahkan juga url dari **login.html** pada **urls.py** di **main**, serta menambahkan restriksi akses untuk pengguna yang belum login dengan menambahkan **@login_required(login_url='/login')** di atas fungsi **show_main()** **views.py**.
+
+
+####     c. logout:
+- Membuat fungsi logout dengan menggunakan **logout** yang diimport dari django.contrib.auth, kemudian di redirect ke halaman login. Fungsi ini dibuat pada views.py di main.
+![Screenshot 2024-09-24 205214](https://github.com/user-attachments/assets/6af39c6c-6294-4c5a-9596-056120491357)
+
+#### - Membuat dua akun pengguna dengan masing-masing tiga *dummy* data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.
+
+- Memanfaatkan halaman yang sudah dibuat pada step sebelumnya untuk registrasi 2 user, dan login menggunakan user-user tersebut.
+- Kemudian mendaftarkan 3 *product* untuk masing-masing user menggunakan form yang sudah dibuat pada tugas sebelumnya.
+
+#### - Menghubungkan model Product dengan User.
         
-        - Pada class Product di models.py, menambahkan atribut baru yaitu user yang berisi models.ForeignKey(User, on_delete=models.CASCADE). (Perlu mengimport **User*** dari **django.contrib.auth.models** terlebih dahulu)
-        - Mengubah isi fungsi **create_product** pada **views.py** di **main** menjadi:
-        ![Screenshot 2024-09-24 210622](https://github.com/user-attachments/assets/774941dc-0b89-4e2b-a4f2-3f6e4afacf1d)
-        - Mengubah value dari **product** pada **show_main** di **views.py** menjadi **MoodEntry.objects.filter(user=request.user)**
+- Pada class Product di models.py, menambahkan atribut baru yaitu user yang berisi models.ForeignKey(User, on_delete=models.CASCADE). (Perlu mengimport **User*** dari **django.contrib.auth.models** terlebih dahulu)
+- Mengubah isi fungsi **create_product** pada **views.py** di **main** menjadi:
+![Screenshot 2024-09-24 210622](https://github.com/user-attachments/assets/774941dc-0b89-4e2b-a4f2-3f6e4afacf1d)
+- Mengubah value dari **product** pada **show_main** di **views.py** menjadi **MoodEntry.objects.filter(user=request.user)**
 
-### - Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan **cookies** seperti **last login** pada halaman utama aplikasi.
+#### - Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan **cookies** seperti **last login** pada halaman utama aplikasi.
 
-        - Pada fungsi **login_user** di **views.py**, selalu menambahkan *cookie* baru dengan fungsi **set_cookie** dari **HttpResponseRedirect**. *Cookie* ini menyimpan *datetime* saat user tersebut login.
-        - *Cookie* ditampilkan pada *main page* aplikasi, dan dihapus ketika user logout.
+- Pada fungsi **login_user** di **views.py**, selalu menambahkan *cookie* baru dengan fungsi **set_cookie** dari **HttpResponseRedirect**. *Cookie* ini menyimpan *datetime* saat user tersebut login.
+- *Cookie* ditampilkan pada *main page* aplikasi, dan dihapus ketika user logout.
