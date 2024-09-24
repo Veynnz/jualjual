@@ -219,14 +219,14 @@ http://dionysius-davis-jualjual.pbp.cs.ui.ac.id/
 
 ### 1. Apa perbedaan antara HttpResponseRedirect() dan redirect()
 
-    HttpResponseRedirect() harus menerima URL lengkap, atau menggunakan reverse untuk mencari URL tersebut. Sedangkan redirect() dapat menerima nama view atau objek model yang kemudian digunakan mencari URL yang sesuai. Selain itu redirect() juga memungkinkan penerimaan argumen seperti **args** dan **kwargs**.
+HttpResponseRedirect() harus menerima URL lengkap, atau menggunakan reverse untuk mencari URL tersebut. Sedangkan redirect() dapat menerima nama view atau objek model yang kemudian digunakan mencari URL yang sesuai. Selain itu redirect() juga memungkinkan penerimaan argumen seperti **args** dan **kwargs**.
 
-    Dapat dikatakan bahwa redirect() adalah versi *shortcut* dari HttpResponseRedirect().
+Dapat dikatakan bahwa redirect() adalah versi *shortcut* dari HttpResponseRedirect().
 
 
 ### 2. Jelaskan cara kerja penghubungan model Product dengan User!
 
-    Menambahkan atribut user pada model Product yang berisi models.ForeignKey(User, on_delete=models.CASCADE). Foreign key ini bertujuan sebagai referensi antara product dengan user yang sedang logged in, sehingga product tersebut hanya menjadi milik user tersebut. Product tersebut pun hanya akan ditampilkan jika user yang sedang logged in adalah user yang direferensikan melalui foreign key tersebut.
+Menambahkan atribut user pada model Product yang berisi models.ForeignKey(User, on_delete=models.CASCADE). Foreign key ini bertujuan sebagai referensi antara product dengan user yang sedang logged in, sehingga product tersebut hanya menjadi milik user tersebut. Product tersebut pun hanya akan ditampilkan jika user yang sedang logged in adalah user yang direferensikan melalui foreign key tersebut.
 
 ### 3. Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
 
