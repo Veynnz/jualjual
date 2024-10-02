@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between h-16">
       <div class="flex items-center">
         <h1 class="text-2xl font-bold text-center text-white">JualJual</h1>
-        <div class="flex items-left ml-10">
+        <div class="hidden md:flex items-left ml-10">
           <button class="text-white text-center mr-10 hover:font-bold">Home</button>
           <button class="text-white text-center mr-10 hover:font-bold">Products</button>
           <button class="text-white text-center mr-10 hover:font-bold">Categories</button>
@@ -12,7 +12,7 @@
       </div>
       <div class="hidden md:flex items-center">
         {% if user.is_authenticated %}
-          <div class="hidden md:flex flex-col item.//\ZSs-left mr-5">
+          <div class="hidden lg:flex flex-col item.//\ZSs-left mr-5">
             <span class="text-gray-300 text-left">Welcome, {{ user.username }}</span>
             <p class="text-white text-left mr-4">{{ npm }}, {{ class }}</p>
           </div>
