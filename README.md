@@ -305,18 +305,20 @@ Urutan prioritas pengambilan CSS selector:
 
 ### 2. Mengapa *responsive design* menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan *responsive design*!
 
+- Karena tidak semua device memiliki panjang dan lebar layar yang sama. Salah satu contohnya adalah website pada desktop dan hp pasti memiliki ukuran yang berbeda. Untuk menjaga agar website tidak *collapse*, maka diperlukan design yang responsif untuk setiap ukuran.
+
 - Aplikasi yang menerapkan *responsive design*:
-- - https://www.youtube.com/
-- - https://www.facebook.com/
-- - dll
+    - https://www.youtube.com/
+    - https://www.facebook.com/
+    - dll
 
 - Aplikasi yang belum menerapkan *responsive design*:
-- - https://dequeuniversity.com/library/responsive/1-non-responsive
+    - https://dequeuniversity.com/library/responsive/1-non-responsive
 
 ### 3. Jelaskan perbedaan antara *margin*, *border*, dan *padding*, serta cara untuk mengimplementasikan ketiga hal tersebut!
 
 #### - *Margin*
-- - *Margin* adalah batas antara suatu elemen dengan elemen lainnya.
+    - *Margin* adalah batas antara suatu elemen dengan elemen lainnya.
 .example {
     Margin: 20px;
 }
@@ -324,7 +326,7 @@ Urutan prioritas pengambilan CSS selector:
 Pada contoh ini, *elemen* dengan *class* `example` akan memiliki jarak sebesar `20px` dari *elemen* lain pada semua sisinya.
 
 #### - *Border*
-- - *Border* adalah garis yang mengelilingi suatu elemen. 
+    - *Border* adalah garis yang mengelilingi suatu elemen. 
 .example {
     border: 2px solid black;
 }
@@ -332,7 +334,7 @@ Pada contoh ini, *elemen* dengan *class* `example` akan memiliki jarak sebesar `
 Pada contoh ini, *elemen* dengan *class* `example` akan dikelilingi suatu *border* selebar `2px` yang berupa garis *solid* berwarna hitam.
 
 #### - *Padding*
-- - *Padding* adalah jarak antara suatu elemen dengan *bordernya*.
+    - *Padding* adalah jarak antara suatu elemen dengan *bordernya*.
 .example {
     padding: 10px;
 }
@@ -342,19 +344,19 @@ Pada contoh ini, *elemen* dengan *class* `example` akan memiliki jarak `10px` an
 ### 4. Jelaskan konsep *flex box* dan *grid layout* beserta kegunaannya!
 - *Flex box* adalah sebutan untuk jenis container elemen, yang dapat mengatur ukuran dan posisi dari elemen di dalamnya secara satu dimensi (horizontal atau vertikal). *Flex box* berperan sebagai sebuah container dari *elemen-elemen* yang ingin diatur. *Flex box* memungkinkan *elemen-elemen* ini untuk diselaraskan dengan mudah satu dengan yang lain, baik untuk posisinya ataupun ukurannya, sehingga dapat membantu dalam pembuatan *web responsif*.
 
-- - Walaupun sama-sama berperan sebagai container, berbeda dengan *flex box*, *grid layout* digunakan untuk mengatur elemen dalam dua dimensi, yaitu horizontal dan vertikal secara bersamaan. Setiap ruang elemen dapat diatur secara presisi, sehingga memungkinkan kombinasi ukuran dan posisi dengan lebih mudah. *Grid layout* juga sangant membantu dalam pembuatan *web responsif*, dan dapat lebih mudah menangani design website yang kompleks dikarenakan kemampuannya dalam mengatur ruang 2 dimensi.
+    - Walaupun sama-sama berperan sebagai container, berbeda dengan *flex box*, *grid layout* digunakan untuk mengatur elemen dalam dua dimensi, yaitu horizontal dan vertikal secara bersamaan. Setiap ruang elemen dapat diatur secara presisi, sehingga memungkinkan kombinasi ukuran dan posisi dengan lebih mudah. *Grid layout* juga sangant membantu dalam pembuatan *web responsif*, dan dapat lebih mudah menangani design website yang kompleks dikarenakan kemampuannya dalam mengatur ruang 2 dimensi.
 
 ### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
 - Implementasikan fungsi untuk menghapus dan mengedit product.
-- - Menambahkan fungsi baru create_product dan edit_product pada views.py, menambahkan path yang sesuai pada urls.py, lalu membuat halaman baru (create_product.html dan edit_product.html) untuk membuat/mengedit produk tersebut.
+    - Menambahkan fungsi baru create_product dan edit_product pada views.py, menambahkan path yang sesuai pada urls.py, lalu membuat halaman baru (create_product.html dan edit_product.html) untuk membuat/mengedit produk tersebut.
 
-- - - modifikasi pada views.py
+        - modifikasi pada views.py
 ![Screenshot 2024-10-02 091215](https://github.com/user-attachments/assets/16bca58b-3a91-43b4-90f1-6f5cfa395bb1)
 
 - Kustomisasi desain pada template HTML yang telah dibuat pada tugas-tugas sebelumnya menggunakan CSS Tailwind
-- - Menggunakan *CSS Tailwind* untuk mengcustom desain dari `login.html`, `register.html`, dan `create_product.html`. Menggunakan *CSS* untuk membuat halaman menjadi *responsive* dan lebih menarik dengan membuat *button*, memberi warna, *positioning*, dll.
-- - Menggunakan CSS Tailwind untuk membuat halaman lebih menarik, dan menggunakan flex box sebagai container untuk menjaga web agar tetap responsif.
-- - - Menambahkan *if statement* pada `main.html` untuk mengecek jika produk memiliki value atau tidak. Jika tidak maka menampilkan gambar yang sudah dipilih.
-- - - Membuat file baru `card_product.html` yang sudah diedit dengan *CSS Tailwind* untuk menampilkan setiap produk dengan menarik. File ini akan dipanggil untuk setiap produk yang ada dengan field yang diisi oleh info produk tersebut.
-- - Membuat 2 *button* tersebut yang berfungsi untuk menjalankan salah satu dari 2 fungsi baru (*edit* dan *delete*) pada `views.py` ketika di *click*.
-- - Membuat file baru `navbar.html` dengan opening dan *closing tag nav*. *Navbar* ini diisi dengan beberapa *shortcut button*, *logout button*, info pengguna, dll. Kemudian menginclude *navbar* ini pada halaman lain seperti `main.html`, `create_product.html`, dan `edit_product.html`. Mengimplementasikan 2 mode, yaitu untuk desktop dan mobile, sehingga navbar tetap responsif.
+    - Menggunakan *CSS Tailwind* untuk mengcustom desain dari `login.html`, `register.html`, dan `create_product.html`. Menggunakan *CSS* untuk membuat halaman menjadi *responsive* dan lebih menarik dengan membuat *button*, memberi warna, *positioning*, dll.
+    - Menggunakan CSS Tailwind untuk membuat halaman lebih menarik, dan menggunakan flex box sebagai container untuk menjaga web agar tetap responsif.
+        - Menambahkan *if statement* pada `main.html` untuk mengecek jika produk memiliki value atau tidak. Jika tidak maka menampilkan gambar yang sudah dipilih.
+        - Membuat file baru `card_product.html` yang sudah diedit dengan *CSS Tailwind* untuk menampilkan setiap produk dengan menarik. File ini akan dipanggil untuk setiap produk yang ada dengan field yang diisi oleh info produk tersebut.
+    - Membuat 2 *button* tersebut yang berfungsi untuk menjalankan salah satu dari 2 fungsi baru (*edit* dan *delete*) pada `views.py` ketika di *click*.
+    - Membuat file baru `navbar.html` dengan opening dan *closing tag nav*. *Navbar* ini diisi dengan beberapa *shortcut button*, *logout button*, info pengguna, dll. Kemudian menginclude *navbar* ini pada halaman lain seperti `main.html`, `create_product.html`, dan `edit_product.html`. Mengimplementasikan 2 mode, yaitu untuk desktop dan mobile, sehingga navbar tetap responsif.
