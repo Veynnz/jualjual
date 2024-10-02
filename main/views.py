@@ -16,6 +16,9 @@ from django.urls import reverse
 def show_main(request):
     products = Product.objects.filter(user=request.user)
     
+    for product in products:
+        product.rating_percentage = product.rating * 20
+        product.formatted_price = "{:,.0f}".format(product.price).replace(',', '.')
     context = {
         'npm': '2306213836',
         'name': request.user.username,
@@ -23,20 +26,50 @@ def show_main(request):
         'products': products,
         'last_login': request.COOKIES['last_login'],
     }
-
     return render(request, "main.html", context)
 
 def create_product(request):
     form = ProductForm(request.POST or None)
 
     if form.is_valid() and request.method == "POST":
-        mood_entry = form.save(commit=False)
-        mood_entry.user = request.user
-        mood_entry.save()
+        product = form.save(commit=False)
+        product.user = request.user
+        product.save()
         return redirect('main:show_main')
 
-    context = {'form': form}
+    context = {
+        'form': form,
+        'npm': '2306213836',
+        'class': 'PBP C'
+    }
     return render(request, "create_product.html", context)
+
+def edit_product(request, id):
+    # Get product entry berdasarkan id
+    product = Product.objects.get(pk = id)
+
+    # Set product entry sebagai instance dari form
+    form = ProductForm(request.POST or None, instance=product)
+
+    if form.is_valid() and request.method == "POST":
+        # Simpan form dan kembali ke halaman awal
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {
+        'form': form,
+        'npm': '2306213836',
+        'class': 'PBP C'
+    }
+    return render(request, "edit_product.html", context)
+
+def delete_product(request, id):
+    # Get product berdasarkan id
+    product = Product.objects.get(pk = id)
+    # Hapus product
+    product.delete()
+    # Kembali ke halaman awal
+    return HttpResponseRedirect(reverse('main:show_main'))
 
 def register(request):
     form = UserCreationForm()
