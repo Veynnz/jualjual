@@ -1,4 +1,11 @@
-http://dionysius-davis-jualjual.pbp.cs.ui.ac.id/
+http://dionysius-davis-jualjual.pbp.cs.ui.ac.id/    <br>
+
+[TUGAS 2](#TUGAS-2) <br>
+[TUGAS 3](#TUGAS-3) <br>
+[TUGAS 4](#TUGAS-4) <br>
+[TUGAS 5](#TUGAS-5) <br>
+[TUGAS 6](#TUGAS-6) <br>
+
 
 # TUGAS 2
 
@@ -360,3 +367,168 @@ Pada contoh ini, *elemen* dengan *class* `example` akan memiliki jarak `10px` an
         - Membuat file baru `card_product.html` yang sudah diedit dengan *CSS Tailwind* untuk menampilkan setiap produk dengan menarik. File ini akan dipanggil untuk setiap produk yang ada dengan field yang diisi oleh info produk tersebut.
     - Membuat 2 *button* tersebut yang berfungsi untuk menjalankan salah satu dari 2 fungsi baru (*edit* dan *delete*) pada `views.py` ketika di *click*.
     - Membuat file baru `navbar.html` dengan opening dan *closing tag nav*. *Navbar* ini diisi dengan beberapa *shortcut button*, *logout button*, info pengguna, dll. Kemudian menginclude *navbar* ini pada halaman lain seperti `main.html`, `create_product.html`, dan `edit_product.html`. Mengimplementasikan 2 mode, yaitu untuk desktop dan mobile, sehingga navbar tetap responsif.
+
+# TUGAS 6
+
+### 1. Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
+- Javascript membantu membuat halaman web lebih interaktif. Contohnya seperti:
+    - Penambahan animasi
+    - Dynamic text pada html
+    - Handling events
+    - Melakukan kalkulasi (seperti untuk validasi)
+    - dll
+    
+    Berbeda dengan CSS yang hanya berfungsi untuk mengubah tampilan depan HTML, Javascript mampu menghandle *logic side* dari halaman tersebut.
+
+### 2. Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
+
+- `await` berfungsi untuk menghentikan sementara eksekusi instruksi selanjutnya dari program, dengan tujuan untuk menunggu instruksi `fetch` selesai dilakukan. Dengan menggunakan `await`, program akan menunggu hingga `fetch` memiliki hasil, sehingga bisa langsung digunakan tanpa harus menggunakan *callback*.
+    - Jika tidak menggunakan `await`, maka program akan terus berjalan tanpa menunggu hasil dari `fetch`. Jika kemudian ada instruksi yang menggunakan hasil dari `fetch` yang belum selesai tersebut, maka instruksi akan mendapat *Promise* sebagai nilai dari `fetch`, yaitu objek Javascript yang mewakili hasil akhir dari operasi asynchronous yang belum selesai. Untuk menanganinya tanpa `await`, kita bisa menggunakan `.then()` untuk mendapatkan hasil yang sama.
+
+### 3. Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
+
+- *Django* memerlukan *CSRF* token untuk setiap permintaan `POST` atau modifikasi data seperti *form submission*. Jika kita tidak mengirimkan token *CSRF* yang benar, maka *Django* akan membatalkan permintaan dan mengembalikan error. Dengan menggunakan *decorator* `csrf_exempt`, kita dapat melewati aturan ini dengan mengecualikan view tersebut dari pemeriksaan *CSRF*.
+
+### 4. Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
+
+- Karena pada dasarnya *frontend* hanya bertugas untuk menampilkan *interface*. Pembersihan di *frontend* berguna untuk kepentingan pengalaman pengguna saja, namun pembersihan pada *backend* juga perlu dilakukan untuk menjaga keamanan dan integritas data. Pembersihan data melalui *backend* dapat membantu mencegah serangan seperti XSS dan SQL Injection, serta membantu agar data yang ada tetap sesuai standar yang ditentukan.
+
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+
+- AJAX `GET`
+    - Ubahlah kode `cards` data *product* agar dapat mendukung AJAX `GET`.
+
+        - Dengan mengubah cara penampilan data dari Django menjadi JS. Mengalihkan penampilan data dari `card_product.html` ke `main.html`:
+        ```JS
+            <div id="product_cards"></div>
+            ...
+            document.getElementById("product_cards").className = classNameString;
+            document.getElementById("product_cards").innerHTML = htmlString;
+        ```
+
+    - Lakukan pengambilan data *product* menggunakan AJAX `GET`. Pastikan bahwa data yang diambil hanyalah data milik pengguna yang *logged-in*.
+        - Di *fetch* pada function `getProducts()` untuk ditampilkan melalui *json*:
+        ```JS
+            async function getProducts(){
+                return fetch("{% url 'main:show_json' %}").then((res) => res.json())
+            }
+        ```
+        - `show_json()` dipastikan hanya mengambil `user` yang *logged_in* dengan:
+        ```JS
+            data = Product.objects.filter(user=request.user)
+        ```
+
+- AJAX `POST`
+    - Buatlah sebuah tombol yang membuka sebuah modal dengan form untuk menambahkan *product*.
+
+        - Dengan membuat element *button* pada `main.html` dengan nilai `data-modal-target` dan `data-modal-toggle` yang sudah ditentukan. Kemudian menambahkan juga fitur *onclick*, sehingga memanggil fungsi `showModal()` ketika *button* di click
+        ```JS
+            <button data-modal-target="crudModal" data-modal-toggle="crudModal" class="btn bg-indigo-800 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 ml-6 hover:scale-105" onclick="showModal();">
+                Register New Product by AJAX
+            </button>
+        ```
+
+        - Membuat modal baru dengan id yang sama dengan `data-modal-target` dan `data-modal-toggle`pada *button*. Defaultnya modal ini akan dihide, dan hanya akan muncul ketika fungsi *showModal()* dipanggil melalui *button* sebelumnya.
+        ```JS
+            <div id="crudModal" tabindex="-1" aria-hidden="true" class="hidden fixed inset-0 z-50 w-full flex items-center justify-center bg-gray-900 bg-opacity-50 overflow-x-hidden overflow-y-auto transition-opacity duration-300 ease-out">
+                <div id="crudModalContent" class="absolute bg-gray-800 rounded-lg shadow-lg w-3/4 sm:w-2/3 md:w-1/2 lg:w-2/5 mx-4 sm:mx-0 transform scale-95 opacity-0 transition-transform transition-opacity duration-300 ease-out top-20">
+                    <!-- Modal header -->
+                    <div class="flex items-center justify-between p-4 border-b rounded-t">
+                    <h3 class="text-xl font-semibold text-white">
+                        Register New Product
+                    </h3>
+                    ...
+        ```
+
+        - Terdapat reset form pada fungsi `addProduct()` untuk mereset form ketika penambahan *product* berhasil, dan setiap field pada form akan menghandle error (termasuk error message) jika data yang dimasukkan tidak valid.
+        ```JS
+            document.getElementById("productForm").reset(); 
+        ```
+
+        - Terdapat juga *event listener* yang memanggil fungsi hideModal() ketika tombol submit berhasil diclick (*product* tersimpan).
+        ```JS
+            document.getElementById("submitProduct").addEventListener("click", hideModal);
+        ```
+
+
+    - Buatlah fungsi view baru untuk menambahkan mood baru ke dalam basis data.
+
+        - Menambahkan fungsi berikut:
+        ```python
+        @csrf_exempt
+        @require_POST
+        def add_product_ajax(request):
+            name = strip_tags(request.POST.get("name"))
+            seller = strip_tags(request.POST.get("seller"))
+            price = float(request.POST.get("price"))
+            description = strip_tags(request.POST.get("description"))
+            rating = int(request.POST.get("rating"))
+            category = request.POST.get("category")
+            user = request.user
+
+            new_product = Product(
+                name=name, 
+                seller=seller,
+                price=price, 
+                description=description,
+                rating=rating, 
+                category=category,
+                user=user,
+            )
+            new_product.save()
+
+            return HttpResponse(b"CREATED", status=201)
+        ```
+        Fungsi ini hanya khusus jika user menambahkan menggunakan AJAX, dan berfungsi sama dengan fungsi add sebelumnya.
+
+    - Buatlah path /create-ajax/ yang mengarah ke fungsi view yang baru kamu buat.
+
+        - Menambahkan path baru <br>
+        ```python
+            `path('create-product-ajax', add_product_ajax, name='add_product_ajax')`
+        ```
+        pada `urlpatterns` di `main/urls.py`
+
+    - Hubungkan form yang telah kamu buat di dalam modal kamu ke path /create-ajax/.
+
+        - Keduanya dihubungkan melalui fungsi `addProduct()`, dimana fungsi ini akan dipanggil ketika form disubmit, dan fungsi ini akan mengfetch path tersebut.
+        ```JS
+        function addProduct() {
+            fetch("{% url 'main:add_product_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#productForm')),
+            })
+            .then(response => refreshProducts())
+
+            document.getElementById("productForm").reset(); 
+            document.querySelector("[data-modal-toggle='crudModal']").click();
+
+            return false;
+        }
+        ```
+
+    - Lakukan refresh pada halaman utama secara asinkronus untuk menampilkan daftar mood terbaru tanpa reload halaman utama secara keseluruhan.
+
+        - Refresh dilakukan pada async function `refreshProducts()`, yang berfungsi untuk menampilkan setiap *product* sama seperti `card_product.html`. Fungsi ini akan dipanggil setiap kali fungsi addProduct() dijalankan, sehingga daftar *product* akan update secara otomatis setiap ada *product* baru. 
+        ```JS
+          async function refreshProducts() {
+            document.getElementById("product_cards").innerHTML = "";
+            document.getElementById("product_cards").className = "";
+            const products = await getProducts();
+            let htmlString = "";
+            let classNameString = "";
+
+            if (products.length === 0) {
+                classNameString = "flex flex-col items-center justify-center min-h-[24rem] p-6";
+                ...
+        ```
+
+        ```JS
+            ...
+            fetch("{% url 'main:add_product_ajax' %}", {
+                method: "POST",
+                body: new FormData(document.querySelector('#productForm')),
+                })
+                .then(response => refreshProducts())
+                ...
+        ```

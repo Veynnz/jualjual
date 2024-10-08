@@ -9,21 +9,20 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 import datetime
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+from django.utils.html import strip_tags
+
 
 # Create your views here.
 
 @login_required(login_url='/login')
 def show_main(request):
-    products = Product.objects.filter(user=request.user)
     
-    for product in products:
-        product.rating_percentage = product.rating * 20
-        product.formatted_price = "{:,.0f}".format(product.price).replace(',', '.')
     context = {
         'npm': '2306213836',
         'name': request.user.username,
         'class': 'PBP C',
-        'products': products,
         'last_login': request.COOKIES['last_login'],
     }
     return render(request, "main.html", context)
@@ -96,6 +95,7 @@ def login_user(request):
 
     else:
         form = AuthenticationForm(request)
+        messages.error(request, "Invalid username or password. Please try again.")
     context = {'form': form}
     return render(request, 'login.html', context)
 
@@ -105,12 +105,36 @@ def logout_user(request):
     response.delete_cookie('last_login')
     return response
 
+@csrf_exempt
+@require_POST
+def add_product_ajax(request):
+    name = strip_tags(request.POST.get("name"))
+    seller = strip_tags(request.POST.get("seller"))
+    price = float(request.POST.get("price"))
+    description = strip_tags(request.POST.get("description"))
+    rating = int(request.POST.get("rating"))
+    category = request.POST.get("category")
+    user = request.user
+
+    new_product = Product(
+        name=name, 
+        seller=seller,
+        price=price, 
+        description=description,
+        rating=rating, 
+        category=category,
+        user=user,
+    )
+    new_product.save()
+
+    return HttpResponse(b"CREATED", status=201)
+
 def show_xml(request):
-    data = Product.objects.all()
+    data = Product.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
 
 def show_json(request):
-    data = Product.objects.all()
+    data = Product.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def show_xml_by_id(request, id):
