@@ -421,7 +421,7 @@ Pada contoh ini, *elemen* dengan *class* `example` akan memiliki jarak `10px` an
 - AJAX `POST`
     - Buatlah sebuah tombol yang membuka sebuah modal dengan form untuk menambahkan *product*.
 
-        - Dengan membuat element *button* pada `main.html` dengan nilai `data-modal-target` dan `data-modal-toggle` yang sudah ditentukan. Kemudian menambahkan juga fitur *onclick*, sehingga memanggil fungsi `showModal()` ketika *button* di click
+        - Dengan membuat element *button* pada `main.html` dengan nilai `data-modal-target` dan `data-modal-toggle` yang sudah ditentukan. Kemudian menambahkan juga fitur *onclick*, sehingga memanggil fungsi `showModal()` ketika *button* di click.
         ```JS
             <button data-modal-target="crudModal" data-modal-toggle="crudModal" class="btn bg-indigo-800 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 ml-6 hover:scale-105" onclick="showModal();">
                 Register New Product by AJAX
@@ -483,7 +483,7 @@ Pada contoh ini, *elemen* dengan *class* `example` akan memiliki jarak `10px` an
 
     - Buatlah path /create-ajax/ yang mengarah ke fungsi view yang baru kamu buat.
 
-        - Menambahkan path baru <br>
+        - Menambahkan path baru: <br>
         ```python
             `path('create-product-ajax', add_product_ajax, name='add_product_ajax')`
         ```
