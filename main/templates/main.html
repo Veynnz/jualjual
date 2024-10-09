@@ -100,7 +100,7 @@
 
     document.getElementById("productForm").reset(); 
     document.querySelector("[data-modal-toggle='crudModal']").click();
-
+    hideModal();
     return false;
   }
   
@@ -230,7 +230,6 @@ refreshProducts();
     }
 
   document.getElementById("cancelButton").addEventListener("click", hideModal);
-  document.getElementById("submitProduct").addEventListener("click", hideModal);
   document.getElementById("closeModalBtn").addEventListener("click", hideModal);
   document.getElementById("productForm").addEventListener("submit", (e) => {
     e.preventDefault();
