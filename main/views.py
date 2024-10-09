@@ -93,9 +93,9 @@ def login_user(request):
             response.set_cookie('last_login', str(datetime.datetime.now()))
             return response
 
-    else:
-        form = AuthenticationForm(request)
-        messages.error(request, "Invalid username or password. Please try again.")
+    # else:
+    #     form = AuthenticationForm(request)
+    #     messages.error(request, "Invalid username or password. Please try again.")
     context = {'form': form}
     return render(request, 'login.html', context)
 
